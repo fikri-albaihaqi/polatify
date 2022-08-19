@@ -1,12 +1,12 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import { getAccessToken } from './spotify';
+import { token } from './spotify'
 
 export default {
   name: 'App',
   data() {
    return {
-      accessToken: getAccessToken()
+      accessToken: token
     }
   }
 }
@@ -15,4 +15,5 @@ export default {
 <template>
   <router-view v-if="accessToken" name="home"></router-view>
   <router-view v-else name="login"></router-view>
+  <router-view></router-view>
 </template>

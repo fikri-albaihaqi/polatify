@@ -25,7 +25,7 @@ var generateRandomString = function (length) {
 app.get('/login', function (req, res) {
 
   var state = generateRandomString(16);
-  var scope = 'user-read-private user-read-email user-read-recently-played user-top-read';
+  var scope = 'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
 
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -70,9 +70,9 @@ app.get('/callback', function (req, res) {
         // we can also pass the token to the browser to make requests from there
         res.redirect(
           `${frontend_uri}/#${querystring.stringify({
-          access_token: access_token,
-          refresh_token: refresh_token,
-        })}`
+            access_token: access_token,
+            refresh_token: refresh_token,
+          })}`
         );
       } else {
         res.redirect(`/#${querystring.stringify({ error: 'invalid_token' })}`);

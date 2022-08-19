@@ -15,6 +15,7 @@ module.exports = {
       },
       fontFamily: {
         'righteous': ['Righteous', 'cursive'],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       backgroundImage: {
         'main-background': "url('../src/images/bg.svg')",

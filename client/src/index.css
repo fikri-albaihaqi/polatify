@@ -6,3 +6,8 @@
   font-family: 'righteous';
   src: url('./assets/Righteous-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'poppins';
+  src: url('./assets/Poppins-Regular.ttf');
+}
