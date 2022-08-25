@@ -8,10 +8,12 @@ module.exports = {
     extend: {
       colors: {
         'primary': '#EB5353',
-        'secondary': '#F9D923',
-        'secondary-shade': '#e0c320',
-        'background': '#187498',
+        'primary-shade': '#d44b4b',
+        'secondary': '#5bccf6',
+        'secondary-shade': '#52b8dd',
+        'background': '#FFFDF4',
         'accent': '#36AE7C',
+        'dark': '#030e12'
       },
       fontFamily: {
         'righteous': ['Righteous', 'cursive'],

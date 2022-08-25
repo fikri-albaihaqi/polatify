@@ -9,7 +9,6 @@ import {
   getUserTopArtistsLong,
 } from "../spotify/index.js";
 import Button from "./Button.vue";
-import { onBeforeUpdate } from "@vue/runtime-core";
 import Artist from "./Artist.vue";
 
 export default {
@@ -32,13 +31,13 @@ export default {
       } else if (newCategory === "All Time Top Tracks") {
         this.userTopItems = [];
         this.userTopItems = await this.getTopTracksLong();
-      } else if (newCategory === 'Last Month Top Artists') {
+      } else if (newCategory === "Last Month Top Artists") {
         this.userTopItems = [];
         this.userTopItems = await this.getTopArtistsShort();
-      } else if (newCategory === 'Last 6 Month Top Artists') {
+      } else if (newCategory === "Last 6 Month Top Artists") {
         this.userTopItems = [];
         this.userTopItems = await this.getTopArtistsMedium();
-      } else if (newCategory === 'All Time Top Artists') {
+      } else if (newCategory === "All Time Top Artists") {
         this.userTopItems = [];
         this.userTopItems = await this.getTopArtistsLong();
       }
@@ -78,13 +77,15 @@ export default {
         :text="'Last Month Top Tracks'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
           'mx-4',
-          'my-4'
+          'my-4',
+          category == 'Last Month Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>
@@ -94,13 +95,15 @@ export default {
         :text="'Last 6 Month Top Tracks'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
           'mx-4',
-          'my-4'
+          'my-4',
+          category == 'Last 6 Month Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>
@@ -110,13 +113,15 @@ export default {
         :text="'All Time Top Tracks'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
           'mx-4',
-          'my-4'
+          'my-4',
+          category == 'All Time Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>
@@ -126,27 +131,31 @@ export default {
         :text="'Last Month Top Artists'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
-          'mx-4'
+          'mx-4',
+          category == 'Last Month Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>
-      
+
       <Button
         @click="category = 'Last 6 Month Top Artists'"
         :text="'Last 6 Month Top Artists'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
-          'mx-4'
+          'mx-4',
+          category == 'Last 6 Month Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>
@@ -156,12 +165,14 @@ export default {
         :text="'All Time Top Artists'"
         :class="[
           'rounded-full',
-          'bg-secondary',
           'px-8',
           'py-2',
           'font-medium',
           'hover:bg-secondary-shade',
-          'mx-4'
+          'mx-4',
+          category == 'All Time Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
         ]"
       >
       </Button>

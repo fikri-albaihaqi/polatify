@@ -1,30 +1,43 @@
 <script>
-import Button from '../components/Button.vue'
-import { login } from '../spotify/index.js'
+import Button from "../components/Button.vue";
+import { login } from "../spotify/index.js";
+import Footer from "../components/Footer.vue";
 
 export default {
-  name: 'login',
+  name: "login",
   components: {
     Button,
+    Footer,
   },
   methods: {
     signin() {
-      login()
-    }
-  }
-}
-
+      login();
+    },
+  },
+};
 </script>
 
 <template>
-  <div class="bg-background h-screen flex flex-col justify-center items-center">
-    <h1 class="text-6xl font-righteous text-primary mb-8">Spofestify</h1>
-    <a href="http://localhost:8888/login">
-      <Button
-        @click="signin"
-        :text="'LOG IN TO SPOTIFY'"
-        :class="['rounded-full', 'py-2', 'px-8', 'bg-secondary', 'font-medium', 'hover:bg-secondary-shade']"
-      />
-    </a>
+  <div class="h-screen flex flex-col justify-center items-center">
+    <div class="flex flex-col items-center mt-auto">
+      <img src="../assets/logo.svg" alt="" />
+      <a href="http://localhost:8888/login">
+        <Button
+          @click="signin"
+          :text="'Log In To Spotify'"
+          :class="[
+            'rounded-full',
+            'py-2',
+            'px-8',
+            'my-4',
+            'bg-secondary',
+            'font-medium',
+            'hover:bg-secondary-shade',
+            'text-dark',
+          ]"
+        />
+      </a>
+    </div>
+    <Footer></Footer>
   </div>
 </template>
