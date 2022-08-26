@@ -48,13 +48,13 @@ export default {
 </script>
 
 <template>
-  <div class="">
-    <div class="container flex flex-col items-center py-16">
+  <div>
+    <div class="container flex flex-col items-center py-16 m-auto">
       <img class="rounded-full w-36" :src="userProfile.images[0].url" alt="" />
       <h1 class="text-3xl font-bold font-poppins mt-8">
         {{ userProfile.display_name }}
       </h1>
-      <div class="flex justify-center w-1/3 font-poppins text-center">
+      <div class="flex justify-center lg:w-1/3 font-poppins text-center text-sm">
         <div class="flex flex-col items-center w-1/3 m-4">
           <h2>Playlist</h2>
           <h2 class="font-bold text-primary">{{ userPlaylists.total }}</h2>

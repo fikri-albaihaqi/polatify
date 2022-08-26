@@ -70,8 +70,117 @@ export default {
 </script>
 
 <template>
-  <div>
-    <div class="grid grid-cols-3 my-8">
+  <div class="font-poppins">
+    <h2 class="lg:hidden text-center font-medium">Top Tracks</h2>
+    <div class="lg:hidden grid grid-cols-3 my-2 text-sm">
+      <Button
+        @click="category = 'Last Month Top Tracks'"
+        :text="'Last Month'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'Last Month Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+
+      <Button
+        @click="category = 'Last 6 Month Top Tracks'"
+        :text="'Last 6 Month'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'Last 6 Month Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+
+      <Button
+        @click="category = 'All Time Top Tracks'"
+        :text="'All Time'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'All Time Top Tracks'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+    </div>
+
+    <h2 class="lg:hidden text-center mt-6 mb-2 font-medium">Top Artists</h2>
+    <div class="lg:hidden grid grid-cols-3 text-sm mb-8">
+      <Button
+        @click="category = 'Last Month Top Artists'"
+        :text="'Last Month'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'Last Month Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+
+      <Button
+        @click="category = 'Last 6 Month Top Artists'"
+        :text="'Last 6 Month'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'Last 6 Month Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+
+      <Button
+        @click="category = 'All Time Top Artists'"
+        :text="'All Time'"
+        :class="[
+          'rounded-full',
+          'px-2',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'mx-2',
+          category == 'All Time Top Artists'
+            ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
+            : 'bg-secondary',
+        ]"
+      >
+      </Button>
+    </div>
+
+    <!-- Large screen -->
+    <div class="hidden lg:grid grid-cols-3 my-8">
       <Button
         @click="category = 'Last Month Top Tracks'"
         :text="'Last Month Top Tracks'"

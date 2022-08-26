@@ -18,9 +18,9 @@ export default {
 </script>
 
 <template>
-  <div class="h-screen flex flex-col justify-center items-center">
+  <div class="h-screen flex flex-col justify-center items-center font-poppins">
     <div class="flex flex-col items-center mt-auto">
-      <img src="../assets/logo.svg" alt="" />
+      <img class="w-3/4 lg:w-full" src="../assets/logo.svg" alt="" />
       <a href="http://localhost:8888/login">
         <Button
           @click="signin"
