@@ -11,3 +11,8 @@
   font-family: 'poppins';
   src: url('./assets/Poppins-Regular.ttf');
 }
+
+@font-face {
+  font-family: 'shadow';
+  src: url('./assets/shadow.ttf');
+}

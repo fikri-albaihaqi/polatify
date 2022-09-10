@@ -3,8 +3,8 @@ var querystring = require('querystring')
 var cors = require('cors')
 var path = require('path')
 var request = require('request')
-var client_id = '';
-var client_secret = '';
+var client_id = '2ad40cdfd1d34481ac3f9aed31a8c153';
+var client_secret = '99b0e61bd533433a99247e29a6902cec';
 var redirect_uri = 'http://localhost:8888/callback';
 var frontend_uri = 'http://127.0.0.1:5173'
 

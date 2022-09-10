@@ -1,5 +1,5 @@
 {
-  "name": "spofestify",
+  "name": "polatify",
   "version": "0.0.1",
   "description": "Concert set list generator based on user top track or artist",
   "main": "server/index.js",

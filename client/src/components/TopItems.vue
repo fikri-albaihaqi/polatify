@@ -1,5 +1,4 @@
 <script>
-import Track from "./Track.vue";
 import {
   getUserTopTracksShort,
   getUserTopTracksMedium,
@@ -9,11 +8,11 @@ import {
   getUserTopArtistsLong,
 } from "../spotify/index.js";
 import Button from "./Button.vue";
-import Artist from "./Artist.vue";
+import Polaroid from "./Polaroid.vue";
 
 export default {
   name: "TopItems",
-  components: { Track, Button, Artist },
+  components: { Button, Polaroid },
   data() {
     return {
       userTopItems: [],
@@ -287,40 +286,42 @@ export default {
       </Button>
     </div>
 
-    <Track
-      v-if="category == 'Last Month Top Tracks'"
-      v-for="item in userTopItems"
-      :track="item"
-    ></Track>
+    <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
+      <Polaroid
+        v-if="category == 'Last Month Top Tracks'"
+        v-for="item in userTopItems"
+        :track="item"
+      ></Polaroid>
 
-    <Track
-      v-else-if="category == 'Last 6 Month Top Tracks'"
-      v-for="item in userTopItems"
-      :track="item"
-    ></Track>
+      <Polaroid
+        v-else-if="category == 'Last 6 Month Top Tracks'"
+        v-for="item in userTopItems"
+        :track="item"
+      ></Polaroid>
 
-    <Track
-      v-else-if="category == 'All Time Top Tracks'"
-      v-for="item in userTopItems"
-      :track="item"
-    ></Track>
+      <Polaroid
+        v-else-if="category == 'All Time Top Tracks'"
+        v-for="item in userTopItems"
+        :track="item"
+      ></Polaroid>
 
-    <Artist
-      v-else-if="category == 'Last Month Top Artists'"
-      v-for="item in userTopItems"
-      :artist="item"
-    ></Artist>
+      <Polaroid
+        v-else-if="category == 'Last Month Top Artists'"
+        v-for="item in userTopItems"
+        :artist="item"
+      ></Polaroid>
 
-    <Artist
-      v-else-if="category == 'Last 6 Month Top Artists'"
-      v-for="item in userTopItems"
-      :artist="item"
-    ></Artist>
+      <Polaroid
+        v-else-if="category == 'Last 6 Month Top Artists'"
+        v-for="item in userTopItems"
+        :artist="item"
+      ></Polaroid>
 
-    <Artist
-      v-else-if="category == 'All Time Top Artists'"
-      v-for="item in userTopItems"
-      :artist="item"
-    ></Artist>
+      <Polaroid
+        v-else-if="category == 'All Time Top Artists'"
+        v-for="item in userTopItems"
+        :artist="item"
+      ></Polaroid>
+    </div>
   </div>
 </template>
