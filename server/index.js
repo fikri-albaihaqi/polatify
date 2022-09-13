@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, '../client'))).use(cors());
 // Handle prdouction
 if (process.env.NODE_ENV === 'production') {
   // Static folder
-  app.use(express.static(path.join(__dirname, '../public'))).use(cors());
+  app.use(express.static(__dirname + '/public/'));
 
   // Handle SPA
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
