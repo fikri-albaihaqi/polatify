@@ -5,6 +5,7 @@ const querystring = require('querystring');
 const cors = require('cors');
 const path = require('path');
 const request = require('request');
+const PORT = process.env.PORT || 8888;
 
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
@@ -121,5 +122,7 @@ app.get('/refresh_token', function (req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+// console.log('Listening on 8888');
+app.listen(PORT, function () {
+  console.warn(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
+});
