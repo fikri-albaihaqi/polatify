@@ -86,8 +86,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'Last 6 Month Top Tracks'"
@@ -103,8 +102,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'All Time Top Tracks'"
@@ -120,8 +118,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
     </div>
 
     <h2 class="lg:hidden text-center mt-6 mb-2 font-medium">Top Artists</h2>
@@ -140,8 +137,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'Last 6 Month Top Artists'"
@@ -157,8 +153,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'All Time Top Artists'"
@@ -174,8 +169,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
     </div>
 
     <!-- Large screen -->
@@ -195,8 +189,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'Last 6 Month Top Tracks'"
@@ -213,8 +206,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'All Time Top Tracks'"
@@ -231,8 +223,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'Last Month Top Artists'"
@@ -248,8 +239,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'Last 6 Month Top Artists'"
@@ -265,8 +255,7 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
 
       <Button
         @click="category = 'All Time Top Artists'"
@@ -282,46 +271,129 @@ export default {
             ? ['bg-primary', 'text-white', 'hover:bg-primary-shade']
             : 'bg-secondary',
         ]"
-      >
-      </Button>
+      />
     </div>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'Last Month Top Tracks'"
+    >
+      Last Month Top Tracks
+    </h1>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'Last 6 Month Top Tracks'"
+    >
+      Last 6 Month Top Tracks
+    </h1>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'All Time Top Tracks'"
+    >
+      All Time Top Tracks
+    </h1>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'Last Month Top Artists'"
+    >
+      Last Month Top Artists
+    </h1>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'Last 6 Month Top Artists'"
+    >
+      Last 6 Month Top Artists
+    </h1>
+
+    <h1
+      class="
+        text-center text-primary
+        font-righteous font-bold
+        text-2xl
+        lg:text-4xl
+        mb-8
+        mt-16
+      "
+      v-if="category == 'All Time Top Artists'"
+    >
+      All Time Top Artists
+    </h1>
 
     <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
       <Polaroid
         v-if="category == 'Last Month Top Tracks'"
         v-for="item in userTopItems"
         :track="item"
-      ></Polaroid>
+      />
 
       <Polaroid
         v-else-if="category == 'Last 6 Month Top Tracks'"
         v-for="item in userTopItems"
         :track="item"
-      ></Polaroid>
+      />
 
       <Polaroid
         v-else-if="category == 'All Time Top Tracks'"
         v-for="item in userTopItems"
         :track="item"
-      ></Polaroid>
+      />
 
       <Polaroid
         v-else-if="category == 'Last Month Top Artists'"
         v-for="item in userTopItems"
         :artist="item"
-      ></Polaroid>
+      />
 
       <Polaroid
         v-else-if="category == 'Last 6 Month Top Artists'"
         v-for="item in userTopItems"
         :artist="item"
-      ></Polaroid>
+      />
 
       <Polaroid
         v-else-if="category == 'All Time Top Artists'"
         v-for="item in userTopItems"
         :artist="item"
-      ></Polaroid>
+      />
     </div>
   </div>
 </template>

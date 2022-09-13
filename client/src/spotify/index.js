@@ -14,7 +14,6 @@ const getLocalAccessToken = () => window.localStorage.getItem('spotify_access_to
 const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_token');
 const setAuthStatus = status => window.localStorage.setItem('status', status);
 const getAuthStatus = () => window.localStorage.getItem('status');
-const deleteAuthStatus = () => window.localStorage.removeItem('logged_in');
 
 const getHashParams = () => {
   const hashParams = {};
@@ -30,7 +29,7 @@ const getHashParams = () => {
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
-    const { data } = await axios.get(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
     const { access_token } = data;
     setLocalAccessToken(access_token);
     window.location.reload();
@@ -88,20 +87,20 @@ const headers = {
   'Content-type': 'application/json',
 }
 
-export const getUserProfile = () => axios.get('https://api.spotify.com/v1/me', { headers })
+export const getUserProfile = () => axios.get('https://api.spotify.com/v1/me', { headers });
 
-export const getUserPlaylists = () => axios.get('https://api.spotify.com/v1/users/user_id/playlists', { headers })
+export const getUserPlaylists = () => axios.get('https://api.spotify.com/v1/users/user_id/playlists', { headers });
 
-export const getUserFollowedArtists = () => axios.get('https://api.spotify.com/v1/me/following?type=artist', { headers })
+export const getUserFollowedArtists = () => axios.get('https://api.spotify.com/v1/me/following?type=artist', { headers });
 
-export const getUserTopTracksShort = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term', { headers })
+export const getUserTopTracksShort = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=short_term', { headers });
 
-export const getUserTopTracksMedium = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=medium_term', { headers })
+export const getUserTopTracksMedium = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=medium_term', { headers });
 
-export const getUserTopTracksLong = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', { headers })
+export const getUserTopTracksLong = () => axios.get('https://api.spotify.com/v1/me/top/tracks?limit=10&time_range=long_term', { headers });
 
-export const getUserTopArtistsShort = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=short_term', { headers })
+export const getUserTopArtistsShort = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=short_term', { headers });
 
-export const getUserTopArtistsMedium = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=medium_term', { headers })
+export const getUserTopArtistsMedium = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=medium_term', { headers });
 
-export const getUserTopArtistsLong = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=long_term', { headers })
+export const getUserTopArtistsLong = () => axios.get('https://api.spotify.com/v1/me/top/artists?limit=10&time_range=long_term', { headers });

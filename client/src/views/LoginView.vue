@@ -22,7 +22,7 @@ export default {
     <div class="flex flex-col items-center mt-auto w-[80%]">
       <img class="w-3/4 lg:w-1/2" src="../assets/logo.svg" alt="" />
       <h1 class="mb-4 text-center md:text-xl">Top track and & artist generator in polaroid photo style</h1>
-      <a href="http://localhost:8888/login">
+      <a href="login">
         <Button
           @click="signin"
           :text="'Log In To Spotify'"
@@ -39,6 +39,6 @@ export default {
         />
       </a>
     </div>
-    <Footer></Footer>
+    <Footer/>
   </div>
 </template>

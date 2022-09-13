@@ -1,22 +1,39 @@
-var express = require('express')
-var querystring = require('querystring')
-var cors = require('cors')
-var path = require('path')
-var request = require('request')
-var client_id = '2ad40cdfd1d34481ac3f9aed31a8c153';
-var client_secret = '99b0e61bd533433a99247e29a6902cec';
-var redirect_uri = 'http://localhost:8888/callback';
-var frontend_uri = 'http://127.0.0.1:5173'
+require('dotenv').config();
 
-var app = express();
+const express = require('express');
+const querystring = require('querystring');
+const cors = require('cors');
+const path = require('path');
+const request = require('request');
 
-app.use(express.static(path.join(__dirname, '../client'))).use(cors())
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
+let redirect_uri = process.env.REDIRECT_URI || 'http://localhost:8888/callback';
+let frontend_uri = process.env.FRONTEND_URI || 'http://127.0.0.1:5173';
 
-var generateRandomString = function (length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+if (process.env.NODE_ENV !== 'production') {
+  redirect_uri = 'http://localhost:8888/callback';
+  frontend_uri = 'http://127.0.0.1:5173';
+}
 
-  for (var i = 0; i < length; i++) {
+const app = express();
+
+app.use(express.static(path.join(__dirname, '../client'))).use(cors());
+
+// Handle prdouction
+if (process.env.NODE_ENV === 'production') {
+  // Static folder
+  app.use(express.static(path.join(__dirname, '../public'))).use(cors());
+
+  // Handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+}
+
+const generateRandomString = function (length) {
+  let text = '';
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+  for (let i = 0; i < length; i++) {
     text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
@@ -24,8 +41,8 @@ var generateRandomString = function (length) {
 
 app.get('/login', function (req, res) {
 
-  var state = generateRandomString(16);
-  var scope = 'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
+  let state = generateRandomString(16);
+  const scope = 'user-read-private user-read-email user-read-recently-played user-top-read user-follow-read user-follow-modify playlist-read-private playlist-read-collaborative playlist-modify-public';
 
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -39,8 +56,8 @@ app.get('/login', function (req, res) {
 
 app.get('/callback', function (req, res) {
 
-  var code = req.query.code || null;
-  var state = req.query.state || null;
+  let code = req.query.code || null;
+  let state = req.query.state || null;
 
   if (state === null) {
     res.redirect('/#' +
@@ -48,7 +65,7 @@ app.get('/callback', function (req, res) {
         error: 'state_mismatch'
       }));
   } else {
-    var authOptions = {
+    const authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
@@ -64,7 +81,7 @@ app.get('/callback', function (req, res) {
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
 
-        var access_token = body.access_token,
+        const access_token = body.access_token,
           refresh_token = body.refresh_token;
 
         // we can also pass the token to the browser to make requests from there
@@ -83,8 +100,8 @@ app.get('/callback', function (req, res) {
 
 app.get('/refresh_token', function (req, res) {
 
-  var refresh_token = req.query.refresh_token;
-  var authOptions = {
+  const refresh_token = req.query.refresh_token;
+  const authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     headers: { 'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
     form: {
@@ -96,7 +113,7 @@ app.get('/refresh_token', function (req, res) {
 
   request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
-      var access_token = body.access_token;
+      const access_token = body.access_token;
       res.send({
         'access_token': access_token
       });

@@ -1,5 +1,4 @@
 <script>
-import { onBeforeMount } from "@vue/runtime-core";
 import Button from "../components/Button.vue";
 import TopItems from "../components/TopItems.vue";
 import Footer from "../components/Footer.vue";
@@ -50,10 +49,7 @@ export default {
 <template>
   <div>
     <header class="flex flex-col items-center mt-4">
-      <img class="w-3/4 lg:w-[20%]" src="../assets/logo.svg" alt="" />
-      <!-- <h1 class="mb-4">
-        Top track and & artist generator in polaroid photo style
-      </h1> -->
+      <img class="w-[50%] md:w-[35%] lg:w-[20%]" src="../assets/logo.svg" alt="" />
     </header>
     <div class="container flex flex-col items-center py-16 m-auto">
       <img class="rounded-full w-36" :src="userProfile.images[0].url" alt="" />
@@ -79,9 +75,9 @@ export default {
         </div>
       </div>
 
-      <TopItems></TopItems>
+      <TopItems/>
 
-      <a href="http://127.0.0.1:5173/">
+      <a href="">
         <Button
           @click="signout"
           :text="'Logout'"
@@ -95,10 +91,9 @@ export default {
             'text-white',
             'mt-16',
           ]"
-        >
-        </Button>
+        />
       </a>
     </div>
-    <Footer></Footer>
+    <Footer/>
   </div>
 </template>
