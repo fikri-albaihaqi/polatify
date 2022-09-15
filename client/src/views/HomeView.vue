@@ -32,8 +32,12 @@ export default {
     Footer,
   },
   async created() {
-    (this.userProfile = await this.getProfile()),
-      (this.userPlaylists = await this.getPlaylists()),
+    try {
+      this.userProfile = await this.getProfile();
+    } catch (e) {
+      this.responseStatus = e;
+    }
+    (this.userPlaylists = await this.getPlaylists()),
       (this.userFollowedArtists = await this.getFollowedArtists());
   },
   data() {
@@ -41,18 +45,34 @@ export default {
       userProfile: [],
       userPlaylists: [],
       userFollowedArtists: [],
+      responseStatus: "",
     };
   },
 };
 </script>
 
 <template>
-  <div>
+  <div v-if="responseStatus === ''">
     <header class="flex flex-col items-center mt-4">
-      <img class="w-[50%] md:w-[35%] lg:w-[20%]" src="../assets/logo.svg" alt="" />
+      <img
+        class="w-[50%] md:w-[35%] lg:w-[20%]"
+        src="../assets/logo.svg"
+        alt=""
+      />
     </header>
     <div class="container flex flex-col items-center py-16 m-auto">
-      <img class="rounded-full w-36" :src="userProfile.images[0].url" alt="" />
+      <img
+        v-if="userProfile.images.length === 0"
+        class="rounded-full w-36"
+        src="../assets/avatar.svg"
+        alt=""
+      />
+      <img
+        v-else
+        class="rounded-full w-36"
+        :src="userProfile.images[0].url"
+        alt=""
+      />
       <h1 class="text-3xl font-bold font-poppins mt-8">
         {{ userProfile.display_name }}
       </h1>
@@ -75,7 +95,7 @@ export default {
         </div>
       </div>
 
-      <TopItems/>
+      <TopItems />
 
       <a href="">
         <Button
@@ -94,6 +114,41 @@ export default {
         />
       </a>
     </div>
-    <Footer/>
+    <Footer />
+  </div>
+
+  <div
+    v-else-if="responseStatus !== ''"
+    class="
+      flex flex-col
+      items-center
+      font-poppins
+      h-screen
+      justify-center
+      mt-auto
+    "
+  >
+    <div class="flex flex-col items-center mt-auto">
+      <h1 class="text-2xl font-bold">Oops... Something went wrong</h1>
+
+      <a href="">
+        <Button
+          @click="signout"
+          :text="'Logout'"
+          :class="[
+            'rounded-full',
+            'bg-primary',
+            'px-8',
+            'py-2',
+            'font-medium',
+            'hover:bg-secondary-shade',
+            'text-white',
+            'mt-16',
+          ]"
+        />
+      </a>
+    </div>
+
+    <Footer />
   </div>
 </template>

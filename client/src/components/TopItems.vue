@@ -358,6 +358,19 @@ export default {
       All Time Top Artists
     </h1>
 
+    <h1
+      class="
+        text-center text-primary
+        font-poppins font-bold
+        text-xl
+        mb-8
+        mt-16
+      "
+      v-if="userTopItems.length === 0"
+    >
+      Not enough data to process
+    </h1>
+
     <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
       <Polaroid
         v-if="category == 'Last Month Top Tracks'"
