@@ -5,8 +5,8 @@ const querystring = require('querystring');
 const cors = require('cors');
 const path = require('path');
 const request = require('request');
-const PORT = process.env.PORT || 8888;
 
+const PORT = process.env.PORT || 8888;
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 let redirect_uri = process.env.REDIRECT_URI || 'http://localhost:8888/callback';
@@ -22,8 +22,6 @@ const app = express();
 if (process.env.NODE_ENV !== 'production') {
   app.use(express.static(path.resolve(__dirname, '../client'))).use(cors());
 }
-
-console.log(path.resolve(__dirname, '/public/'));
 
 // Handle prdouction
 if (process.env.NODE_ENV === 'production') {
@@ -126,7 +124,6 @@ app.get('/refresh_token', function (req, res) {
   });
 });
 
-// console.log('Listening on 8888');
 app.listen(PORT, function () {
   console.warn(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
 });
