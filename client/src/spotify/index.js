@@ -1,4 +1,5 @@
 import axios from 'axios';
+import html2canvas from 'html2canvas';
 
 // Refresh the token
 const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
@@ -15,6 +16,35 @@ const getLocalRefreshToken = () => window.localStorage.getItem('spotify_refresh_
 const setAuthStatus = status => window.localStorage.setItem('status', status);
 const getAuthStatus = () => window.localStorage.getItem('status');
 
+export const downloadImage = (fileName) => {
+  const offScreen = document.querySelector('.polaroid');
+  const clone = hiddenClone(offScreen);
+  html2canvas(clone, { scrollY: -window.scrollY, useCORS: true }).then((canvas) => {
+    const dataURL = canvas.toDataURL('image/png', 1.0);
+    document.body.removeChild(clone);
+    const link = document.createElement('a');
+    console.log(dataURL);
+    link.href = dataURL;
+    link.download = `${fileName}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+}
+
+function hiddenClone(element) {
+  const clone = element.cloneNode(true);
+  const style = clone.style;
+  style.display = 'flex';
+  style.flexDirection = 'column';
+  style.alignItems = 'center';
+  style.backgroundImage = 'linear-gradient(to right top, #fffdf4, #e3f2dc, #b6e8d5, #81dde2, #5bccf6)';
+  style.width = '1280px';
+
+  document.body.appendChild(clone);
+  return clone;
+}
+
 const getHashParams = () => {
   const hashParams = {};
   let e;
@@ -29,7 +59,7 @@ const getHashParams = () => {
 // Refresh the token
 const refreshAccessToken = async () => {
   try {
-    const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
+    const { data } = await axios.get(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`);
     const { access_token } = data;
     setLocalAccessToken(access_token);
     window.location.reload();

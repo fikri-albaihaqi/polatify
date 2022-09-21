@@ -6,6 +6,7 @@ import {
   getUserTopArtistsShort,
   getUserTopArtistsMedium,
   getUserTopArtistsLong,
+  downloadImage,
 } from "../spotify/index.js";
 import Button from "./Button.vue";
 import Polaroid from "./Polaroid.vue";
@@ -60,6 +61,9 @@ export default {
     },
     async getTopArtistsLong() {
       return (await getUserTopArtistsLong()).data.items;
+    },
+    exportAsImage(imageName) {
+      downloadImage(imageName);
     },
   },
   async created() {
@@ -173,7 +177,7 @@ export default {
     </div>
 
     <!-- Large screen -->
-    <div class="hidden lg:grid grid-cols-3 my-8">
+    <div class="hidden lg:grid grid-cols-3 my-16">
       <Button
         @click="category = 'Last Month Top Tracks'"
         :text="'Last Month Top Tracks'"
@@ -274,138 +278,150 @@ export default {
       />
     </div>
 
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'Last Month Top Tracks'"
-    >
-      Last Month Top Tracks
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'Last 6 Month Top Tracks'"
-    >
-      Last 6 Month Top Tracks
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'All Time Top Tracks'"
-    >
-      All Time Top Tracks
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'Last Month Top Artists'"
-    >
-      Last Month Top Artists
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'Last 6 Month Top Artists'"
-    >
-      Last 6 Month Top Artists
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-righteous font-bold
-        text-2xl
-        lg:text-4xl
-        mb-8
-        mt-16
-      "
-      v-if="category == 'All Time Top Artists'"
-    >
-      All Time Top Artists
-    </h1>
-
-    <h1
-      class="
-        text-center text-primary
-        font-poppins font-bold
-        text-xl
-        mb-8
-        mt-16
-      "
-      v-if="userTopItems.length === 0"
-    >
-      Not enough data to process
-    </h1>
-
-    <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
-      <Polaroid
+    <div class="polaroid pb-8">
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
         v-if="category == 'Last Month Top Tracks'"
-        v-for="item in userTopItems"
-        :track="item"
-      />
+      >
+        Last Month Top Tracks
+      </h1>
 
-      <Polaroid
-        v-else-if="category == 'Last 6 Month Top Tracks'"
-        v-for="item in userTopItems"
-        :track="item"
-      />
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
+        v-if="category == 'Last 6 Month Top Tracks'"
+      >
+        Last 6 Month Top Tracks
+      </h1>
 
-      <Polaroid
-        v-else-if="category == 'All Time Top Tracks'"
-        v-for="item in userTopItems"
-        :track="item"
-      />
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
+        v-if="category == 'All Time Top Tracks'"
+      >
+        All Time Top Tracks
+      </h1>
 
-      <Polaroid
-        v-else-if="category == 'Last Month Top Artists'"
-        v-for="item in userTopItems"
-        :artist="item"
-      />
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
+        v-if="category == 'Last Month Top Artists'"
+      >
+        Last Month Top Artists
+      </h1>
 
-      <Polaroid
-        v-else-if="category == 'Last 6 Month Top Artists'"
-        v-for="item in userTopItems"
-        :artist="item"
-      />
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
+        v-if="category == 'Last 6 Month Top Artists'"
+      >
+        Last 6 Month Top Artists
+      </h1>
 
-      <Polaroid
-        v-else-if="category == 'All Time Top Artists'"
-        v-for="item in userTopItems"
-        :artist="item"
+      <h1
+        class="
+          text-center text-primary
+          font-righteous font-bold
+          text-2xl
+          lg:text-4xl
+          mb-8
+        "
+        v-if="category == 'All Time Top Artists'"
+      >
+        All Time Top Artists
+      </h1>
+
+      <h1
+        class="
+          text-center text-primary
+          font-poppins font-bold
+          text-xl
+          mb-8
+        "
+        v-if="userTopItems.length === 0"
+      >
+        Not enough data to process
+      </h1>
+
+      <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5">
+        <Polaroid
+          v-if="category == 'Last Month Top Tracks'"
+          v-for="item in userTopItems"
+          :track="item"
+        />
+
+        <Polaroid
+          v-else-if="category == 'Last 6 Month Top Tracks'"
+          v-for="item in userTopItems"
+          :track="item"
+        />
+
+        <Polaroid
+          v-else-if="category == 'All Time Top Tracks'"
+          v-for="item in userTopItems"
+          :track="item"
+        />
+
+        <Polaroid
+          v-else-if="category == 'Last Month Top Artists'"
+          v-for="item in userTopItems"
+          :artist="item"
+        />
+
+        <Polaroid
+          v-else-if="category == 'Last 6 Month Top Artists'"
+          v-for="item in userTopItems"
+          :artist="item"
+        />
+
+        <Polaroid
+          v-else-if="category == 'All Time Top Artists'"
+          v-for="item in userTopItems"
+          :artist="item"
+        />
+      </div>
+    </div>
+
+    <div class="flex justify-center">
+      <Button
+        @click="exportAsImage('polaroid')"
+        :text="'Download Image'"
+        :class="[
+          'rounded-full',
+          'bg-secondary',
+          'px-8',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'text-white',
+          'mt-16',
+        ]"
       />
     </div>
   </div>
