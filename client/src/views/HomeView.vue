@@ -1,7 +1,6 @@
 <script>
 import Button from "../components/Button.vue";
 import TopItems from "../components/TopItems.vue";
-import Footer from "../components/Footer.vue";
 
 import {
   logout,
@@ -29,7 +28,6 @@ export default {
   components: {
     Button,
     TopItems,
-    Footer,
   },
   async created() {
     try {
@@ -79,7 +77,7 @@ export default {
       <div class="flex justify-center lg:w-1/3 font-poppins text-center">
         <div class="flex flex-col items-center w-1/3 m-4">
           <h2>Playlist</h2>
-          <h2 class="font-bold text-primary">{{ userPlaylists.total }}</h2>
+          <h2 class="font-bold text-primary">{{ userPlaylists.limit }}</h2>
         </div>
         <div class="flex flex-col items-center w-1/3 m-4">
           <h2>Followers</h2>
@@ -114,7 +112,6 @@ export default {
         />
       </a>
     </div>
-    <Footer />
   </div>
 
   <div
@@ -148,7 +145,5 @@ export default {
         />
       </a>
     </div>
-
-    <Footer />
   </div>
 </template>

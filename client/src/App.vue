@@ -1,19 +1,25 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
-import { getAccessToken } from './spotify'
+import { RouterLink, RouterView } from "vue-router";
+import { getAccessToken } from "./spotify";
+import Footer from "./components/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
-   return {
-      accessToken: getAccessToken()
-    }
+    return {
+      accessToken: getAccessToken(),
+    };
+  },
+  components: {
+    Footer,
   }
-}
+};
 </script>
 
 <template>
-  <router-view v-if="accessToken != null" name="home"></router-view>
-  <router-view v-else-if="accessToken === null" name="login"></router-view>
-  <router-view v-else></router-view>
+  <div>
+    <router-view v-if="accessToken != null" name="home"></router-view>
+    <router-view v-else-if="accessToken === null" name="login"></router-view>
+    <Footer/>
+  </div>
 </template>

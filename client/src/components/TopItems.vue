@@ -278,7 +278,7 @@ export default {
       />
     </div>
 
-    <div class="polaroid pb-8">
+    <div class="polaroid mb-8">
       <h1
         class="
           text-center text-primary
