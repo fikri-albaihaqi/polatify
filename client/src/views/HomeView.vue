@@ -116,34 +116,25 @@ export default {
 
   <div
     v-else-if="responseStatus !== ''"
-    class="
-      flex flex-col
-      items-center
-      font-poppins
-      h-screen
-      justify-center
-      mt-auto
-    "
+    class="flex flex-col items-center font-poppins h-[92vh] justify-center"
   >
-    <div class="flex flex-col items-center mt-auto">
-      <h1 class="text-2xl font-bold">Oops... Something went wrong</h1>
+    <h1 class="text-2xl font-bold">Oops... Something went wrong</h1>
 
-      <a href="">
-        <Button
-          @click="signout"
-          :text="'Logout'"
-          :class="[
-            'rounded-full',
-            'bg-primary',
-            'px-8',
-            'py-2',
-            'font-medium',
-            'hover:bg-secondary-shade',
-            'text-white',
-            'mt-16',
-          ]"
-        />
-      </a>
-    </div>
+    <a href="">
+      <Button
+        @click="signout"
+        :text="'Logout'"
+        :class="[
+          'rounded-full',
+          'bg-primary',
+          'px-8',
+          'py-2',
+          'font-medium',
+          'hover:bg-secondary-shade',
+          'text-white',
+          'mt-16',
+        ]"
+      />
+    </a>
   </div>
 </template>
