@@ -20,6 +20,6 @@ export default {
   <div>
     <router-view v-if="accessToken != null" name="home"></router-view>
     <router-view v-else-if="accessToken === null" name="login"></router-view>
-    <Footer/>
+    <Footer />
   </div>
 </template>

@@ -1,5 +1,4 @@
 <script>
-import Button from "../components/Button.vue";
 import TopItems from "../components/TopItems.vue";
 
 import {
@@ -26,7 +25,6 @@ export default {
     },
   },
   components: {
-    Button,
     TopItems,
   },
   async created() {
@@ -37,6 +35,7 @@ export default {
     }
     (this.userPlaylists = await this.getPlaylists()),
       (this.userFollowedArtists = await this.getFollowedArtists());
+    console.log(this.responseStatus)
   },
   data() {
     return {
@@ -52,25 +51,11 @@ export default {
 <template>
   <div v-if="responseStatus === ''">
     <header class="flex flex-col items-center mt-4">
-      <img
-        class="w-[50%] md:w-[35%] lg:w-[20%]"
-        src="../assets/logo.svg"
-        alt=""
-      />
+      <img class="w-[50%] md:w-[35%] lg:w-[20%]" src="../assets/logo.svg" alt="" />
     </header>
     <div class="container flex flex-col items-center py-16 m-auto">
-      <img
-        v-if="userProfile.images.length === 0"
-        class="rounded-full w-36"
-        src="../assets/avatar.svg"
-        alt=""
-      />
-      <img
-        v-else
-        class="rounded-full w-36"
-        :src="userProfile.images[0].url"
-        alt=""
-      />
+      <img v-if="userProfile.images.length === 0" class="rounded-full w-36" src="../assets/avatar.svg" alt="" />
+      <img v-else class="rounded-full w-36" :src="userProfile.images[0].url" alt="" />
       <h1 class="text-3xl font-bold font-poppins mt-8">
         {{ userProfile.display_name }}
       </h1>
@@ -95,46 +80,35 @@ export default {
 
       <TopItems />
 
-      <a href="">
-        <Button
-          @click="signout"
-          :text="'Logout'"
-          :class="[
-            'rounded-full',
-            'bg-primary',
-            'px-8',
-            'py-2',
-            'font-medium',
-            'hover:bg-secondary-shade',
-            'text-white',
-            'mt-16',
-          ]"
-        />
+      <a href="" @click="signout" :class="[
+        'rounded-full',
+        'bg-primary',
+        'px-8',
+        'py-2',
+        'font-medium',
+        'hover:bg-secondary-shade',
+        'text-white',
+        'mt-16',
+      ]">
+        Logout
       </a>
     </div>
   </div>
 
-  <div
-    v-else-if="responseStatus !== ''"
-    class="flex flex-col items-center font-poppins h-[92vh] justify-center"
-  >
+  <div v-else-if="responseStatus !== ''" class="flex flex-col items-center font-poppins h-[92vh] justify-center">
     <h1 class="text-2xl font-bold">Oops... Something went wrong</h1>
 
-    <a href="">
-      <Button
-        @click="signout"
-        :text="'Logout'"
-        :class="[
-          'rounded-full',
-          'bg-primary',
-          'px-8',
-          'py-2',
-          'font-medium',
-          'hover:bg-secondary-shade',
-          'text-white',
-          'mt-16',
-        ]"
-      />
+    <a href="" @click="signout" :class="[
+      'rounded-full',
+      'bg-primary',
+      'px-8',
+      'py-2',
+      'font-medium',
+      'hover:bg-secondary-shade',
+      'text-white',
+      'mt-16',
+    ]">
+      Logout
     </a>
   </div>
 </template>
