@@ -128,7 +128,7 @@ onMounted(async () => {
       </div>
     </div>
 
-    <div class="min-h-screen polaroid mb-8 mt-16">
+    <div class="polaroid mb-8 mt-16">
       <h1 class="
           text-center text-primary
           font-righteous font-bold

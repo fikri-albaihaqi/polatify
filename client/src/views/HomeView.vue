@@ -49,7 +49,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="responseStatus === ''">
+  <div>
     <header class="flex flex-col items-center mt-4">
       <img class="w-[50%] md:w-[35%] lg:w-[20%]" src="../assets/logo.svg" alt="" />
     </header>
@@ -93,22 +93,5 @@ export default {
         Logout
       </a>
     </div>
-  </div>
-
-  <div v-else-if="responseStatus !== ''" class="flex flex-col items-center font-poppins h-[92vh] justify-center">
-    <h1 class="text-2xl font-bold">Oops... Something went wrong</h1>
-
-    <a href="" @click="signout" :class="[
-      'rounded-full',
-      'bg-primary',
-      'px-8',
-      'py-2',
-      'font-medium',
-      'hover:bg-secondary-shade',
-      'text-white',
-      'mt-16',
-    ]">
-      Logout
-    </a>
   </div>
 </template>
