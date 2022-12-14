@@ -7,11 +7,14 @@ export default {
   name: "App",
   data() {
     return {
-      accessToken: getAccessToken(),
+      accessToken: '',
     };
   },
   components: {
     Footer,
+  },
+  mounted() {
+    this.accessToken = getAccessToken()
   }
 };
 </script>

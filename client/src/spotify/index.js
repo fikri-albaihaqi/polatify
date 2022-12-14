@@ -2,7 +2,7 @@ import axios from 'axios';
 import html2canvas from 'html2canvas';
 
 // Refresh the token
-const EXPIRATION_TIME = 3600 * 1000; // 3600 seconds * 1000 = 1 hour in milliseconds
+const EXPIRATION_TIME = 3600 * 1000; // 1 hour expiration time
 
 const setTokenTimestamp = () => window.localStorage.setItem('spotify_token_timestamp', Date.now());
 const setLocalAccessToken = token => {
@@ -56,7 +56,6 @@ const getHashParams = () => {
   return hashParams;
 };
 
-// Refresh the token
 const refreshAccessToken = async () => {
   try {
     const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
@@ -69,7 +68,6 @@ const refreshAccessToken = async () => {
   }
 };
 
-// Get access token off of query params (called on application init)
 export const getAccessToken = () => {
   const { error, access_token, refresh_token } = getHashParams();
 
@@ -79,14 +77,17 @@ export const getAccessToken = () => {
   }
 
   // If token has expired
-  if ((Date.now() - getTokenTimestamp() > EXPIRATION_TIME) && (getAuthStatus() == 'logged_in')) {
-    console.warn('Access token has expired, refreshing...');
-    refreshAccessToken();
+  if (getTokenTimestamp() !== null) {
+    if ((Date.now() - getTokenTimestamp() > EXPIRATION_TIME) && (getAuthStatus() == 'logged_in')) {
+      console.warn('Access token has expired, refreshing...');
+      logout()
+      refreshAccessToken();
+    }
   }
 
   const localAccessToken = getLocalAccessToken();
 
-  // If there is no ACCESS token in local storage, set it and return `access_token` from params
+  // If there is no ACCESS token in local storage when logged in, set it and return `access_token` from params
   if (((!localAccessToken || localAccessToken === 'undefined') && access_token) && (getAuthStatus() == 'logged_in')) {
     setLocalAccessToken(access_token);
     setLocalRefreshToken(refresh_token);
@@ -102,7 +103,7 @@ export const login = () => {
   setAuthStatus('logged_in');
 }
 
-export const logout = () => {
+export function logout() {
   window.localStorage.removeItem('spotify_token_timestamp');
   window.localStorage.removeItem('spotify_access_token');
   window.localStorage.removeItem('spotify_refresh_token');
