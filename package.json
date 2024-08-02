@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/index.js",
-    "deploy": "cd client/ && npm run build"
+    "deploy": "cd client/ && npm install && npm run build"
   },
   "author": "Fikri Al-baihaqi",
   "license": "ISC",
