@@ -55,7 +55,7 @@ export default {
     </header>
     <div class="container flex flex-col items-center py-16 m-auto">
       <img v-if="userProfile.images.length === 0" class="rounded-full w-36" src="../assets/avatar.svg" alt="" />
-      <img v-else class="rounded-full w-36" :src="userProfile.images[0].url" alt="" />
+      <img v-else class="rounded-full w-36" :src="userProfile.images[1].url" alt="" />
       <h1 class="text-3xl font-bold font-poppins mt-8">
         {{ userProfile.display_name }}
       </h1>
