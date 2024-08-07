@@ -7,13 +7,6 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   build: {
     outDir: 'public',
-  }, 
-  server: {
-    proxy: {
-      '/login': {
-        target: 'http://localhost:5173/spotify/login'
-      }
-    }
   },
   plugins: [vue()],
   resolve: {
